@@ -14,7 +14,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.[jt]sx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -28,5 +28,13 @@ module.exports = {
       template: path.resolve(paths.webpack, 'index.html'),
     }),
   ],
+  resolve: {
+    extensions: [
+      '.js', 
+      '.jsx',
+      '.ts',
+      '.tsx',
+    ],
+  },
   target: 'web',
 };
