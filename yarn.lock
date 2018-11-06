@@ -1015,6 +1015,19 @@
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.4.tgz#4e049756383c3f055dd8f3d24e63fb543e98eb07"
   integrity sha512-MHmwBtCb7OCv1DSivz2UNJXPGU/1btAWRKlqJ2saEhVJkpkvqHMMaOpKg0v4sAbDWSQekHGvPVMM8nQ+Jen03Q==
 
+"@types/prop-types@*":
+  version "15.5.6"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.6.tgz#9c03d3fed70a8d517c191b7734da2879b50ca26c"
+  integrity sha512-ZBFR7TROLVzCkswA3Fmqq+IIJt62/T7aY/Dmz+QkU7CaW2QFqAitCE8Ups7IzmGhcN1YWMBT4Qcoc07jU9hOJQ==
+
+"@types/react@^16.4.18":
+  version "16.4.18"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.18.tgz#2e28a2e7f92d3fa7d6a65f2b73275c3e3138a13d"
+  integrity sha512-eFzJKEg6pdeaukVLVZ8Xb79CTl/ysX+ExmOfAAqcFlCCK5TgFDD9kWR0S18sglQ3EmM8U+80enjUqbfnUyqpdA==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.7.11.tgz#b988582cafbb2b095e8b556526f30c90d057cace"
@@ -2120,6 +2133,11 @@ css@2.X, css@^2.2.1:
     source-map-resolve "^0.5.2"
     urix "^0.1.0"
 
+csstype@^2.2.0:
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.7.tgz#bf9235d5872141eccfb2d16d82993c6b149179ff"
+  integrity sha512-Nt5VDyOTIIV4/nRFswoCKps1R5CD1hkiyjBE9/thNaNZILLEviVw9yWQw15+O+CpNjQKB/uvdcxFFOrSflY3Yw==
+
 cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
@@ -2518,10 +2536,10 @@ decamelize@^2.0.0:
   dependencies:
     xregexp "4.0.0"
 
-dechart@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/dechart/-/dechart-0.0.1.tgz#e01bdb3446c0deeba702e6b64886ead8cbb61b6b"
-  integrity sha512-z8ftItNToFh531FuyYjSmcP0MZ0Al6b4L+S6/CXMJIEF1oiJdic6/g1oRZbO2X7b8ORe+e+SZ8hbKl5cD5nj2A==
+dechart@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/dechart/-/dechart-0.0.2.tgz#82e3ce2993f6879d8c87553360b359290c29a45a"
+  integrity sha512-UPpZjxyraSsUOiYDWoK95JmGWnLGE7hAUPe7i1bbZSSNSKAttLOZ2iJXRTk9EHakj9LTFnnDk2BXKFY+tfS4RA==
   dependencies:
     "@types/d3" "^5.0.1"
     d3 "4.12.2"
