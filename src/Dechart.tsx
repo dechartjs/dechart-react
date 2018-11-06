@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { default as Chart, HTML_ROOT } from 'dechart';
 
-class DechartComponent extends React.PureComponent<DechartComponentProps> {
+class Dechart extends React.PureComponent<DechartProps> {
   dechartInstance = undefined;
 
   constructor(props) {
@@ -93,7 +93,7 @@ export interface DechartOptions {
   yAxisTicks?: number;
 }
 
-interface DechartComponentProps {
+interface DechartProps {
   chartOptions?: DechartOptions;
   chartType: string;
   className?: string;
@@ -103,4 +103,4 @@ interface DechartComponentProps {
   handleMouseOut?: () => void;
 }
 
-export default DechartComponent;
+export default Dechart;
