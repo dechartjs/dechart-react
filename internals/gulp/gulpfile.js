@@ -26,24 +26,24 @@ const Task = {
 gulp.task(Task.BABEL, () => {
   buildLog(
     Task.BABEL,
-    'NODE_ENV: %s, DIST_PATH: %s, SRC_PATH: %s',
+    'NODE_ENV: %s, LIB_PATH: %s, SRC_PATH: %s',
     process.env.NODE_ENV, 
-    paths.dist,
-    paths.src,
+    paths.output,
+    paths.source,
   );
 
-  return gulp.src([`${paths.src}/**/*.{js,jsx,ts,tsx}`])
+  return gulp.src([`${paths.source}/**/*.{js,jsx,ts,tsx}`])
     .pipe(sourcemaps.init())
     .pipe(babel(babelRc))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.dist));
+    .pipe(gulp.dest(paths.output));
 });
 
 gulp.task(Task.CLEAN, () => {
-  buildLog(Task.EMPTYLOG, 'LOG_PATH: %s', paths.logs);
+  buildLog(Task.CLEAN, 'LIB_PATH: %s', paths.output);
 
   return del([
-    `${paths.dist}/**/*`,
+    `${paths.output}/**/*`,
   ]);
 });
 

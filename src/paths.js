@@ -15,6 +15,6 @@ Did you call process.chdir() properly?`);
 })();
 
 module.exports = {
-  dist: path.resolve(ROOT_PATH, 'dist'),
-  src: path.resolve(ROOT_PATH, 'src'),
+  output: path.resolve(ROOT_PATH, 'lib'),
+  source: path.resolve(ROOT_PATH, 'src'),
 };
