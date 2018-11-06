@@ -15,6 +15,9 @@ Did you call process.chdir() properly?`);
 })();
 
 module.exports = {
+  examples: path.resolve(ROOT_PATH, 'examples'),
   output: path.resolve(ROOT_PATH, 'lib'),
+  public: path.resolve(ROOT_PATH, 'examples/public'),
   source: path.resolve(ROOT_PATH, 'src'),
+  webpack: path.resolve(ROOT_PATH, 'internals/webpack'),
 };
