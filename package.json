@@ -2,6 +2,7 @@
   "name": "dechart-react",
   "version": "0.0.1",
   "description": "",
+  "main": "lib/Dechart.js",
   "scripts": {
     "t": "node ./internals/webpack/build.js",
     "build": "./node_modules/.bin/gulp --gulpfile ./internals/gulp/gulpfile.js build",
