@@ -4,13 +4,15 @@ const path = require('path');
 const babelRc = require('../babel/.babelrc');
 const paths = require('../../src/paths');
 
+console.info('webpack configuration with NODE_ENV: %s', process.env.NODE_ENV);
+
 module.exports = {
   entry: {
     app: [
       path.resolve(paths.examples, 'src/example.js'),
     ],
   },
-  mode: 'development',
+  mode: process.env.NODE_ENV || 'development',
   module: {
     rules: [
       {
@@ -22,6 +24,11 @@ module.exports = {
         }
       }
     ]
+  },
+  output: {
+    path: paths.docs,
+    filename: '[name].[hash].js',
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({

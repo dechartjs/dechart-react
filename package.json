@@ -4,9 +4,9 @@
   "description": "",
   "main": "lib/Dechart.js",
   "scripts": {
-    "t": "node ./internals/webpack/build.js",
     "build": "./node_modules/.bin/gulp --gulpfile ./internals/gulp/gulpfile.js build",
-    "example": "./node_modules/.bin/gulp --gulpfile ./internals/gulp/gulpfile.js example",
+    "build:example": "NODE_ENV=production ./node_modules/.bin/gulp --gulpfile ./internals/gulp/gulpfile.js build:example",
+    "dev:example": "NODE_ENV=development ./node_modules/.bin/gulp --gulpfile ./internals/gulp/gulpfile.js dev:example",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
