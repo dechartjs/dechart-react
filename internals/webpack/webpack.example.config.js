@@ -28,7 +28,7 @@ module.exports = {
   output: {
     path: paths.docs,
     filename: '[name].[hash].js',
-    publicPath: '/',
+    publicPath: '',
   },
   plugins: [
     new HtmlWebpackPlugin({
