@@ -15,7 +15,7 @@
     "Matt S. Huh"
   ],
   "dependencies": {
-    "dechart": "^0.0.2",
+    "dechart": "^0.0.3",
     "react": "^16.6.0"
   },
   "devDependencies": {

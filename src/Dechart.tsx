@@ -29,6 +29,7 @@ class Dechart extends React.PureComponent<DechartProps> {
       data,
       handleMouseMove,
       handleMouseOut,
+      captureDispatch,
       chartOptions,
     } = this.props;
 
@@ -44,6 +45,8 @@ class Dechart extends React.PureComponent<DechartProps> {
       .on('mouseout', () => {
         handleMouseOut && handleMouseOut();
       });
+
+    captureDispatch && captureDispatch(this.dechartInstance.beta__dispatch);
   }
 
   render() {
@@ -94,6 +97,7 @@ export interface DechartOptions {
 }
 
 interface DechartProps {
+  captureDispatch?: (dispatch: Function) => void;
   chartOptions?: DechartOptions;
   chartType: string;
   className?: string;
