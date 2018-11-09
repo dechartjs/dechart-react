@@ -22,8 +22,9 @@ const buildLog = (tag, ...args) => {
 const Task = {
   BABEL: 'babel',
   BUILD: 'build',
+  BUILD_EXAMPLE: 'build:example',
   CLEAN: 'clean',
-  EXAMPLE: 'example',
+  DEV_EXAMPLE: 'dev:example',
 };
 
 gulp.task(Task.BABEL, () => {
@@ -50,10 +51,37 @@ gulp.task(Task.CLEAN, () => {
   ]);
 });
 
-gulp.task(Task.EXAMPLE, (done) => {
+gulp.task(Task.BUILD_EXAMPLE, (done) => {
   const webpackConfig = require('../webpack/webpack.example.config');
+
   buildLog(
-    Task.EXAMPLE, 
+    Task.BUILD_EXAMPLE, 
+    'EXAMPLE_PATH: %s,\nwebpackConfig: %o', 
+    './examples', 
+    webpackConfig,
+  );
+
+  const compiler = webpack(webpackConfig);
+  compiler.run((err, stats) => {
+    if (err) {
+      console.error('error while compiling', err);
+      done(err);
+    } else {
+      const info = stats.toString({
+        colors: true,
+      });
+      console.info('webpack compilation done: %s', info);
+      done();
+    }
+  })
+});
+
+gulp.task(Task.DEV_EXAMPLE, (done) => {
+  const PORT = 6001;
+  const webpackConfig = require('../webpack/webpack.example.config');
+
+  buildLog(
+    Task.DEV_EXAMPLE, 
     'EXAMPLE_PATH: %s,\nwebpackConfig: %o', 
     './examples', 
     webpackConfig,
@@ -64,8 +92,8 @@ gulp.task(Task.EXAMPLE, (done) => {
     contentBase: paths.public,
     hot: true,
   })
-    .listen(6001, 'localhost', (err) => {
-      console.log('[webpack] contentBase: %s', paths.public);
+    .listen(PORT, 'localhost', (err) => {
+      console.log('[webpack] contentBase: %s, port: %s', paths.public, chalk.red(PORT));
       
       if (err) {
         console.error(err);
