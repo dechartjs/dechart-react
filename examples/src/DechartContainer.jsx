@@ -1,15 +1,27 @@
+import { DechartType } from 'dechart';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TOOLTIP_ROOT } from 'dechart';
 
+import Button from './Button';
 import Dechart from '../../src/Dechart';
+import sampleData from './sampleData';
 import Tooltip from './Tooltip';
+
+const chartOptions = {
+  width: 600,
+};
 
 class DechartContainer extends React.Component {
   constructor() {
     super();
+    this.dechartDispatch = undefined;
+
+    this.captureDispatch = this.captureDispatch.bind(this);
+    this.handleClickButton = this.handleClickButton.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
+
     this.state = {
       bulxX: 0,
       bulbY: 0,
@@ -18,11 +30,15 @@ class DechartContainer extends React.Component {
     };
   }
 
+  captureDispatch(dispatch) {
+    dispatch && (this.dechartDispatch = dispatch);
+  }
+
   handleMouseMove(syntheticData) {
     this.setState(() => ({
       bulbX: syntheticData.bulbX
           && syntheticData.bulbX.length > 0
-          && syntheticData.bulbX[0],
+          && syntheticData.bulbX[0],  
       bulbY: syntheticData.bulbY
           && syntheticData.bulbY.length > 0
           && syntheticData.bulbY[0],
@@ -37,38 +53,35 @@ class DechartContainer extends React.Component {
     }));
   }
 
-  render() {
-    const {
-      chartOptions,
-      chartType,
-      componentId,
-      data,
-    } = this.props;
+  handleClickButton(e) {
+    this.dechartDispatch && this.dechartDispatch();
+  }
 
+  render() {
     return (
-      <Dechart
-        chartOptions={chartOptions}
-        chartType={chartType}
-        componentId={componentId}
-        data={data}
-        handleMouseMove={this.handleMouseMove}
-        handleMouseOut={this.handleMouseOut}
-      >
-        <Tooltip
-          bulbX={this.state.bulbX}
-          bulbY={this.state.bulbY}
-          className={TOOLTIP_ROOT}
-          selectedData={this.state.data}
-          show={this.state.showTooltip}
-        />
-      </Dechart>
+      <div>
+        <Dechart
+          captureDispatch={this.captureDispatch}
+          chartOptions={this.props.chartOptions || chartOptions}
+          chartType={DechartType.LINE}
+          componentId={'sample-dechart'}
+          data={sampleData}
+          handleMouseMove={this.handleMouseMove}
+          handleMouseOut={this.handleMouseOut}
+        >
+          <Tooltip
+            bulbX={this.state.bulbX}
+            bulbY={this.state.bulbY}
+            className={TOOLTIP_ROOT}
+            selectedData={this.state.data}
+            show={this.state.showTooltip}
+          />
+        </Dechart>
+        <Button handleClick={this.handleClickButton} />  
+      </div>
     );
   }
 }
-
-DechartContainer.defaultProps = {
-  chartOptions: {},
-};
 
 DechartContainer.propTypes = {
   chartOptions: PropTypes.shape({
@@ -91,10 +104,7 @@ DechartContainer.propTypes = {
     yAxisFontSize: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
     yAxisTicks: PropTypes.number,
   }),
-  chartType: PropTypes.string.isRequired,
   className: PropTypes.string,
-  componentId: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
 };
 
 export default DechartContainer;

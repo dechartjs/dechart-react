@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 
-import LineChart from './LineChart';
+import Main from './Main';
 
 console.log('[exmaple] example is launched');
 
-render(<LineChart />, document.getElementById('app-root'));
+render(<Main />, document.getElementById('app-root'));
