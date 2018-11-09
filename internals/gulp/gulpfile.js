@@ -24,7 +24,9 @@ const Task = {
   BUILD: 'build',
   BUILD_EXAMPLE: 'build:example',
   CLEAN: 'clean',
+  CLEAN_DOCS: 'clean:docs',
   DEV_EXAMPLE: 'dev:example',
+  WEBPACK_EXAMPLE: 'webpack:example',
 };
 
 gulp.task(Task.BABEL, () => {
@@ -51,7 +53,15 @@ gulp.task(Task.CLEAN, () => {
   ]);
 });
 
-gulp.task(Task.BUILD_EXAMPLE, (done) => {
+gulp.task(Task.CLEAN_DOCS, () => {
+  buildLog(Task.CLEAN_DOCS, 'cleaning docs at: %s', paths.docs);
+
+  return del([
+    `${paths.docs}/**/*`,
+  ]);
+});
+
+gulp.task(Task.WEBPACK_EXAMPLE, (done) => {
   const webpackConfig = require('../webpack/webpack.example.config');
 
   buildLog(
@@ -102,3 +112,5 @@ gulp.task(Task.DEV_EXAMPLE, (done) => {
 });
 
 gulp.task(Task.BUILD, gulp.series(Task.CLEAN, Task.BABEL));
+
+gulp.task(Task.BUILD_EXAMPLE, gulp.series(Task.CLEAN_DOCS, Task.WEBPACK_EXAMPLE));
